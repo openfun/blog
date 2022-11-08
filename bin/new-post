@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+declare title
+
+function usage_setup() {
+    echo -e "Usage: ${0} [OPTIONS] COMMAND
+
+Create a new post. The title of the new post will be prompted.
+
+OPTIONS:
+  -h, --help       print this message
+
+COMMAND:
+  help              print this message
+"
+}
+
+while true; do
+  case "${1}" in
+    -h | --help | help)
+      usage_setup "${FUNCNAME[0]}"
+      exit 0
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+while [ -z "${title}" ]; do
+  clear;
+  echo "What is the title of the new post?";
+  read -r -p "$(echo -e ">>> ")" title
+done
+
+# slugify title
+# https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
+title=$(
+  echo "$title" \
+  | iconv -t ascii//TRANSLIT \
+  | sed -E s/[^a-zA-Z0-9]+/-/g \
+  | sed -E s/^-+\|-+$//g \
+  | tr "[:upper:]" "[:lower:]" \
+)
+
+docker compose run hugo new posts/"${title}"/index.md

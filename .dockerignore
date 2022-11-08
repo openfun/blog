@@ -1,0 +1,20 @@
+# System-specific files
+.DS_Store
+**/.DS_Store
+
+# Docker
+docker-compose.*
+
+# Docs
+docs
+*.md
+*.log
+
+# Development/test cache & configurations
+.cache
+.circleci
+.git
+.github
+.vscode
+.idea
+*.iml

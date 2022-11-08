@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  hugo:
+    image: klakegg/hugo:0.105.0-ext-alpine
+    user: ${DOCKER_USER:-1000}
+    command: server -D
+    ports:
+      - "1313:1313"
+    volumes:
+      - .:/src
+  node:
+    image: node:lts-slim
+    user: ${DOCKER_USER:-1000}
+    volumes:
+      - .:/src

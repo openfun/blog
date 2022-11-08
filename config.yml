@@ -1,0 +1,72 @@
+baseURL: 'https://blog.openfun.fr'
+languageCode: 'en-us'
+title: 'Open FUN'
+theme: 'blowfish'
+summaryLength: 24
+outputs:
+  home:
+    - 'HTML'
+    - 'RSS'
+    - 'JSON'
+author:
+  name: 'Open FUN'
+  image: 'logo-rounded@2x.png'
+  headline: "A technical blog by Open FUN"
+  bio: "France Université Numérique Open Source initiative."
+  links:
+    - twitter: "https://twitter.com/open_fun"
+    - github: "https://github.com/openfun"
+params:
+  colorScheme: 'fun'
+  logo: 'logo-minify@2x.png'
+  enableSearch: true
+  header:
+    layout: 'fixed'
+  homepage:
+    layout: 'profile'
+    showRecent: true
+  article:
+    heroStyle: 'background'
+    showTaxonomies: true
+    showWordCount: false
+    showComments: false
+    showViews: false
+    showEdit: false
+    sharingLinks: false
+  list:
+    showSummary: true
+    groupByYear: true
+    showCards: true
+menus:
+  main:
+    -
+      name: 'Blog'
+      pageRef: 'posts'
+      weight: 10
+    -
+      name: 'Categories'
+      pageRef: 'categories'
+      weight: 20
+    -
+      identifier: 'twitter'
+      pre: 'twitter'
+      url: 'https://github.com/openfun'
+      weight: 30
+    -
+      identifier: 'github'
+      pre: 'github'
+      url: 'https://github.com/openfun'
+      weight: 40
+  footer:
+    -
+      name: 'France Université Numérique'
+      url: 'https://www.france-universite-numerique.fr/'
+      weight: 10
+    -
+      name: 'Twitter'
+      url: 'https://twitter.com/open_fun'
+      weight: 20
+    -
+      name: 'Github'
+      url: 'https://github.com/openfun'
+      weight: 30

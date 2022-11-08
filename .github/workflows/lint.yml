@@ -1,0 +1,42 @@
+name: Linting
+
+on:
+  push:
+    branches-ignore:
+      - "gh-pages"
+
+jobs:
+  lint-git:
+    runs-on: ubuntu-latest
+    name: lint-git
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check absence of fixup commits
+        run: |
+          ! git log | grep 'fixup!'
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install gitlint
+        run: pip install --user requests gitlint
+
+      - name: lint commit messages added to main
+        run: ~/.local/bin/gitlint --commits origin/main..HEAD
+
+  lint-posts:
+    runs-on: ubuntu-latest
+    name: lint-posts
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+
+      - name: Lint posts with prettier
+        run: npx --yes prettier --list-different --no-error-on-unmatched-pattern ./content/posts/**/*.md

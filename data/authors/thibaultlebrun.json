@@ -1,0 +1,13 @@
+{
+  "name": "Thibault Lebrun",
+  "image": "authors/thibaultlebrun.jpg",
+  "bio": "Freelance Backend Developer",
+  "social": [
+    {
+      "linkedin": "https://www.linkedin.com/in/thibault-lebrun"
+    },
+    {
+      "github": "https://github.com/lebrunthibault"
+    }
+  ]
+}

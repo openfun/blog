@@ -61,7 +61,7 @@ git-clean: ## restore repository state as it was freshly cloned
 # -- Project
 bootstrap: ## Bootstrap project
 bootstrap: \
-	gitmodules-init \
+	git-modules-init \
 	run
 .PHONY: bootstrap
 

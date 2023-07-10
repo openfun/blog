@@ -4,7 +4,7 @@ date: 2023-07-04T10:13:24Z
 description:
   "In this blog post we’ll dissect the xAPI specification and focus on the concept of activity. What
   is an activity, where can we expect to find activity metadata and how are the different activity
-  metadata source related ? Let's find out !"
+  metadata source related? Let's find out!"
 categories: ["xAPI", "Activity", "Activity Definition", "Activity Metadata", "LRS"]
 draft: false
 authors:
@@ -13,24 +13,25 @@ authors:
 
 Activities are a backbone of the xAPI specification and of learning systems across the universe 💫.
 The spec defines different ways of describing them giving them the power to travel through space and
-time !
+time!
 
 In this blog post we’ll shed some light on this fascinating process and discuss the terms of
 **activity**, **activity definition**, **activity metadata**, and (for the bravest) the final boss
 👾 : **canonical activity definition**.
 
 As a bonus, when you'll finish reading this blog post you'll be able to fully understand the
-following xAPI diagram summarizing interactions between different activities source ! 😎
+following xAPI diagram summarizing interactions between different activities source! 😎
 ![xAPI metadata](./xAPIMetadata.jpg)
+_[xAPI metadata diagram](https://github.com/adlnet/xAPI-Spec/blob/master/xAPIMetadata.jpg)_
 
 > This post will cite the xAPI spec extensively. Every sentence written in _italic_ is a direct xAPI
 > spec citation.
 
-Buckle up ! 💪
+Buckle up! 💪
 
 ## Some context 📖
 
-### The experience API
+### The Experience API
 
 We suppose the reader is familiar with the existence of the
 [Experience API (xAPI)](https://github.com/adlnet/xAPI-Spec) and to some extent to the concept of
@@ -38,7 +39,7 @@ We suppose the reader is familiar with the existence of the
 
 > For french readers take a look at the
 > [blog of our friend Sébastien Fraysse](https://www.learningdata.fr/xapi-en-bref/) who did a
-> terrific job at making the learning data world understandable and .. enchanting !
+> terrific job at making the learning data world understandable and .. enchanting!
 
 The Experience API (xAPI) is the international standard for learning data.  
 In their own words it's _a technical specification that aims to facilitate the documentation and
@@ -46,7 +47,7 @@ communication of learning experiences._
 
 It is open source and can be found on [GitHub](https://github.com/adlnet/xAPI-Spec).
 
-### Post perimeter 🚧
+### What we'll talk about
 
 We're going to discuss the concepts behind the xAPI representation of activities and what it means
 to
@@ -57,24 +58,24 @@ to
 [Learning Record Consumers](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-About.md#def-learning-record-consumer)
 (LRC, like [warren](https://github.com/openfun/warren)) We'll try to make the concept of activity
 clearer for all parties so that anyone can make enlightened decisions about how to share or query
-activity definitions and metadata !
+activity definitions and metadata!
 
-### Post summary
+### TL;DR
 
 The term `activity` appears in different sections of the specification and the different concepts
 introduced by the spec are somewhat intertwined with one another. To make the following explanations
 easier to grasp, we'll present them step by step according to the masterful plan below :
 
-- What is an activity according to the spec ?
-- How is an activity modeled ? That is, what is its structure ?
-- Where can we find an activity's definition or additional metadata ? 🛒
-- How do the different activity definitions source interact with each other to produce the very
-  tasty activity cake 🧁 ? (not specified by the spec but don't forget to add sugar 😊)
+- What is an activity according to the spec?
+- How is an activity modeled? That is, what is its structure?
+- Where can we find an activity's definition or additional metadata?
+- How do the different activity definitions source interact with each other to produce a correct
+  activity representation?
 
 ## The xAPI activity ⚽
 
-Let's start with a philosophical question: what exactly is life ? ... Sorry I meant, what exactly is
-an activity ?
+Let's start with a philosophical question: what exactly is life? ... Sorry I meant, what exactly is
+an activity?
 
 According to the spec, an activity is
 [_a type of Object making up the "this" in "I did this"_](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-About.md#def-activity).
@@ -130,7 +131,7 @@ Only
 [when the ObjectType is an Activity](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#2441-when-the-objecttype-is-activity),
 (actually the most common case with statements) the activity definition is found in the `definition`
 property of the `object`. This means `statement.object.definition` is an activity definition (big up
-if you deducted that yourself ! 😉).
+if you deducted that yourself 😉).
 
 **📌 In the `context` property**
 
@@ -159,12 +160,13 @@ description of an Activity from the LRS._
 The request will return the **canonical activity definition** 👾 of the LRS. We'll explain this
 concept [below](#canonical-activity-definition-).
 
-This endpoint for this resource [only *returns* data, and it can only be accessed with the GET command](https://adlnet.gov/projects/xapi/#:~:text=and%20usage%20instructions.-,This%20endpoint%20only%20returns%20data,-%2C%20and%20it%20can)
+This endpoint for this resource
+[only _returns_ data, and it can only be accessed with the GET command](https://adlnet.gov/projects/xapi/#:~:text=and%20usage%20instructions.-,This%20endpoint%20only%20returns%20data,-%2C%20and%20it%20can)
 
 ### [Metadata providers](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#30-metadata)
 
 The activity id, an IRI, can optionally resolve to an URL hosted by an external service (like an
-LMS) that defines an **authoritative metadata** (scary too ! [see below](#authoritative-metadata-)).
+LMS) that defines an **authoritative metadata** (scary too! [see below](#authoritative-metadata-)).
 The activity metadata should be structured according to the
 [activity definition](#the-activity-recipe-)
 
@@ -187,15 +189,15 @@ spec make it possible to store activity metadata with total freedom in two place
 This resource is a
 [document resource](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Communication.md#22-document-resources)
 and allows Learning Record Providers (LRP) to save arbitrary data in the form of documents. It is
-the ultimate scratchpad for activities. Put everything you want there (including cakes 🍰) !
+the ultimate scratchpad for activities. Put everything you want there (including cakes 🍰)!
 
 ## The activity's canon 💣
 
 Now we've reviewed every single place an activity can be described let's put the last nail in the
-coffee and explain how these different sources can ... make the activity definition evolve with time
-🪄 !
+coffee and explain how these different sources can ... make the activity definition evolve with
+time!
 
-You read that right ! Even though xAPI statements are
+You read that right! Even though xAPI statements are
 [**immutable**](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#statement-immutability-and-exceptions),
 two xAPI concepts make it possible to update an activity definition and backport (or not) this
 changes into existing xAPI statements.
@@ -205,7 +207,7 @@ specification ..!
 Prepare your poke bowl and let me unleash in the arena ... :
 
 - the **canonical activity definition** 👾 as well as its little brother
-- the **authoritative metadata** 🐙 !
+- the **authoritative metadata** 🐙!
 
 Let's clarify these two terms and finally understand the way an activity definition can evolve with
 time.
@@ -227,7 +229,7 @@ expressed in more recent
 
 It may also incorporate the definition hosted by a **metadata provider**.
 
-The LRS is free to pick which definition to choose !
+The LRS is free to pick which definition to choose!
 
 ### Authoritative metadata 🐙
 
@@ -243,18 +245,18 @@ and serves two purposes :
   and
   [_incorporate the loaded definition into its canonical definition for that Activity, while preserving names or definitions not included in the loaded definition_](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#lrs-requirements-5)
 
-Another mouthful ! 😆
+Another mouthful. 😆
 
 ## Conclusion
 
-Congrats to the brave readers that followed along this somewhat arduous subject 🎉 ! They can now
-understand fully the introduction diagram ✌️
+Congrats to the brave readers that followed along this somewhat arduous subject! They can now
+understand fully the introduction diagram. ✌️
 
 In this post we've learnt about :
 
 - activities : what they are and how are they specified
 - who uses them and how they can be queried
-- What the hell is a canonical activity definition and why it matters
+- What is a canonical activity definition and why it matters
 
 Cheers and let's hope we'll meet again to explore together the magical world of xAPI and digital
-learning ! 👋
+learning! 👋
